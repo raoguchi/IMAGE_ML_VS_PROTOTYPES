@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MGTA 415 Project Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+            line-height: 1.6;
+            background: #ffffff;
+            color: #222;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1f2937;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        code,
+        pre {
+            background-color: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧠 MGTA 415 Project: Image Classification via Prototyping</h1>
+    <h2>📌 Overview</h2>
+    <p>This project explores <strong>image classification</strong> through the lens of <strong>data
+            prototyping</strong>, aiming to reduce the complexity of training datasets while maintaining accuracy. By
+        leveraging techniques like <strong>random sampling</strong> and <strong>K-Means clustering</strong> for
+        prototype selection, we evaluate how well smaller, representative subsets can substitute full datasets in model
+        training.</p>
+    <p>We apply these methods to three classic computer vision datasets:</p>
+    <ul>
+        <li><strong>MNIST</strong> – Handwritten digits</li>
+        <li><strong>EMNIST</strong> – Extended handwritten characters</li>
+        <li><strong>KMNIST</strong> – Japanese character dataset</li>
+    </ul>
+    <h2>🎯 Objective</h2>
+    <blockquote>Can we reduce the size of image datasets for training <strong>without sacrificing model
+            accuracy</strong>?</blockquote>
+    <p>This project treats image classification as a <strong>data prototyping problem</strong> by testing whether smart
+        data selection strategies can:</p>
+    <ul>
+        <li>Decrease training time</li>
+        <li>Reduce memory usage</li>
+        <li>Maintain or even improve generalization on unseen data</li>
+    </ul>
+    <hr>
+    <h2>🗃️ Datasets</h2>
+    <table>
+        <tr>
+            <th>Dataset</th>
+            <th>Description</th>
+            <th>Classes</th>
+            <th>Samples</th>
+        </tr>
+        <tr>
+            <td>MNIST</td>
+            <td>Handwritten digits (0–9)</td>
+            <td>10</td>
+            <td>70,000</td>
+        </tr>
+        <tr>
+            <td>EMNIST</td>
+            <td>Letters and digits</td>
+            <td>62</td>
+            <td>814,255</td>
+        </tr>
+        <tr>
+            <td>KMNIST</td>
+            <td>Hiragana characters</td>
+            <td>10</td>
+            <td>70,000</td>
+        </tr>
+    </table>
+    <hr>
+    <h2>⚙️ Prototyping Methods</h2>
+    <h3>🔹 Random Sampling</h3>
+    <ul>
+        <li>Selects a random subset of the training data.</li>
+        <li>Fast and easy, but may not preserve class balance or structure.</li>
+    </ul>
+    <h3>🔹 K-Means Clustering</h3>
+    <ul>
+        <li>Clusters images and selects centroids as prototypes.</li>
+        <li>Provides a more structured and representative subset.</li>
+        <li>Variants:
+            <ul>
+                <li><strong>K-Means++</strong></li>
+                <li><strong>Random Initialization</strong></li>
+            </ul>
+        </li>
+    </ul>
+    <h3>📊 Visual Samples</h3>
+    <table>
+        <tr>
+            <th>Method</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>Random</td>
+            <td><img src="./mnist-imgs/random_mnist.png" alt="" /></td>
+        </tr>
+        <tr>
+            <td>K-Means</td>
+            <td><img src="./mnist-imgs/kmeans_mnist.png" alt="" /></td>
+        </tr>
+        <tr>
+            <td>K-Means++</td>
+            <td><img src="./mnist-imgs/kmeans_plus_mnist.png" alt="" /></td>
+        </tr>
+    </table>
+    <hr>
+    <h2>🧪 Experiments & Results</h2>
+    <h3>MNIST</h3>
+    <h4>KNN Accuracy on MNIST (K-Means++)</h4>
+    <img src="./mnist-imgs/k++.png" alt="" />
+    <h4>KNN Accuracy on MNIST (Base K-Means)</h4>
+    <img src="./mnist-imgs/kmeans.png" alt="" />
+    <h4>KNN Accuracy with Random Prototypes (MNIST)</h4>
+    <img src="./mnist-imgs/random_mnist.png" alt="" />
+    <hr>
+    <h3>KMNIST</h3>
+    <h4>KNN Accuracy on KMNIST (Base K-Means)</h4>
+    <img src="./kmnist-images/kmeans_kmnist.png" alt="" />
+    <h4>KNN Accuracy with Random Prototypes (KMNIST)</h4>
+    <img src="./kmnist-images/random_kmnist.png" alt="" />
+    <hr>
+    <h3>EMNIST</h3>
+    <h4>KNN Accuracy on EMNIST (K-Means++)</h4>
+    <img src="./emnist-imgs/k++_emnist.png" alt="" />
+    <h4>KNN Accuracy on EMNIST (Base K-Means)</h4>
+    <img src="./emnist-imgs/kmeans_emnist.png" alt="" />
+    <h4>KNN Accuracy with Random Prototypes (EMNIST)</h4>
+    <img src="./emnist-imgs/random_emnist.png" alt="" />
+    <hr>
+    <h3>CNN Experiment (with Lipschitz Regularization)</h3>
+    <h4>CNN Loss Comparison</h4>
+    <img src="./ex_imgs/lipschitz.png" alt="" />
+    <hr>
+    <h2>📁 Repository Structure</h2>
+    <pre><code>mgta415-project/
+├── data/
+│   ├── MNIST/
+│   ├── EMNIST/
+│   └── KMNIST/
+├── emnist.ipynb
+├── kmnist.ipynb
+├── mnist.ipynb
+├── acl-ijcnlp2021-templates/
+│   └── mnist-imgs/
+└── README.md
+</code></pre>
+    <hr>
+    <h2>📓 How to Run</h2>
+    <ol>
+        <li>Install dependencies:
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+        <li>Open and run the notebooks:
+            <pre><code>jupyter notebook mnist.ipynb</code></pre>
+        </li>
+    </ol>
+    <hr>
+    <h2>🧾 Report</h2>
+    <p>The full academic report is available in <a href="./acl-ijcnlp2021-templates/acl2021.tex">acl2021.tex</a>.</p>
+    <hr>
+    <h2>✍️ Authors</h2>
+    <ul>
+        <li>Team members from MGTA 415 – Winter 2025</li>
+        <li>Contributions: Data analysis, modeling, visualizations, and report writing</li>
+    </ul>
+    <hr>
+</body>
+
+</html>

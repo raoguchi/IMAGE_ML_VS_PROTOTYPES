@@ -123,12 +123,7 @@ mgta415-project/
 
 ## 📓 How to Run
 
-1. Install dependencies (e.g. NumPy, scikit-learn, Matplotlib, Jupyter):
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. Open and run the notebooks:
+1. Open and run the notebooks:
    ```bash
    jupyter notebook mnist.ipynb
    ```
